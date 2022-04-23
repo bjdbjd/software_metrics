@@ -2,6 +2,8 @@ import os
 
 def file_exists(filename):
     #判断文件是否存在
+    if(filename==None):
+        return False
     if(os.path.exists(filename) is False):
         print('文件不存在！')
         return False
@@ -20,7 +22,7 @@ def findStr(file_name, str):
 def getMcCabe(file_name):
     # 判断文件存在
     if (file_exists(file_name) is False):
-        os.kill()
+        return ([{'code':322, 'msg': "Input File Error!"}])
 
     # 查找开始节点数
     start_count = findStr(file_name, "<o:Start Id")
@@ -39,12 +41,13 @@ def getMcCabe(file_name):
 
     # 验证
     if (McCabe_2 == McCabe_3):
-        return([{'McCabe': McCabe_2}])
+        print('McCabe:', McCabe_2)
+        return{'code':200, 'data': McCabe_2}
     else:
-        return([{'message': "wrong input image!"}])
+        print('Wrong input!')
+        return{'code':322, 'msg': "wrong input image!"}
 
 
 if __name__ == '__main__':
     file_name = "D:\diagram\ControlFlowDiagram.oom"
-
     getMcCabe(file_name)
