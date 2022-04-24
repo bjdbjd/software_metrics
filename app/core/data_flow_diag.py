@@ -1,29 +1,16 @@
 import os
+from ..util import trueReturn, falseReturn
 
-def file_exists(filename):
-    #判断文件是否存在
-    if(filename==None):
-        return False
-    if(os.path.exists(filename) is False):
-        print('文件不存在！')
-        return False
-    return True
-
-def findStr(file_name, str):
-    with open(file_name, 'r', encoding="utf8") as file:
+def findStr(file, str_):
         count = 0
-
-        #对每行数据进行查找
-        for line in file.readlines():
-            time = line.count(str)
+        for line in file:
+            line = str(line)
+            time = line.count(str_)
             count += time
         return count
 
-def getMcCabe(file_name):
-    # 判断文件存在
-    if (file_exists(file_name) is False):
-        return ([{'code':322, 'msg': "Input File Error!"}])
 
+def getMcCabe(file_name):
     # 查找开始节点数
     start_count = findStr(file_name, "<o:Start Id")
     # 查找终止节点数
@@ -39,13 +26,14 @@ def getMcCabe(file_name):
     McCabe_2 = flow_count - (oper_count + dec_count + start_count + end_count) + 2
     McCabe_3 = dec_count + 1
 
+    print(McCabe_2, McCabe_3)
     # 验证
     if (McCabe_2 == McCabe_3):
         print('McCabe:', McCabe_2)
-        return{'code':200, 'data': McCabe_2}
+        return trueReturn(McCabe_2, 'ok')
     else:
         print('Wrong input!')
-        return{'code':322, 'msg': "wrong input image!"}
+        return falseReturn(None, 'wrong input image!')
 
 
 if __name__ == '__main__':
