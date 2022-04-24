@@ -2,12 +2,12 @@ import os
 from ..util import trueReturn, falseReturn
 
 def findStr(file, str_):
-        count = 0
-        for line in file:
-            line = str(line)
-            time = line.count(str_)
-            count += time
-        return count
+    count = 0
+    for line in file:
+        line = str(line)
+        time = line.count(str_)
+        count += time
+    return count
 
 
 def getMcCabe(file_name):

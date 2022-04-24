@@ -1,14 +1,9 @@
 from flask import Blueprint, request, render_template, g
-from flask_uploads import UploadSet, DOCUMENTS
 from ..core import data_flow_diag
 from . import get_data, handle_error, params_check
-from ..util import trueReturn, falseReturn
 from werkzeug.datastructures import FileStorage
 
 data_flow_diag_blueprint = Blueprint('data_flow_diag_blueprint', __name__, url_prefix='/data_flow_diag')
-
-# dataflow是UploadSet的名字，与配置文件中相同
-dataflow = UploadSet('dataflow', DOCUMENTS)
 
 
 @data_flow_diag_blueprint.before_request
@@ -27,7 +22,7 @@ def handle():
     else:
         return None
 
-
+# 测试用
 @data_flow_diag_blueprint.route('/hello')
 def hello():
     return {'code': 200, 'data': "success! :)"}
