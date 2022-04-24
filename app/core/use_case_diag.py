@@ -19,10 +19,10 @@ def getActorandUseCase(file_name):
 
     print('Actor count: ', actor_count)
     print('Use case count: ', use_case_count)
-    json_data = jsonify({
+    json_data = {
         'actor_count': actor_count,
         'use_case_count': use_case_count
-    })
+    }
     return trueReturn(json_data, 'ok')
 
 if __name__ == '__main__':
