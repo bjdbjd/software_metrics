@@ -25,6 +25,21 @@ class Queue(list):
         return len(self) <= 0
 
 
+class Stack(list):
+
+    def __init__(self):
+        super().__init__()
+    
+    def push(self, item):
+        self.append(item)
+    
+    def pop(self):
+        return super().pop(-1)
+    
+    def is_empty(self):
+        return len(self) <= 0
+
+
 class Qualifier:
 
     def __init__(self, member: str) -> None:
@@ -55,7 +70,6 @@ def analyze_method(method: MethodDeclaration, ctx: Context):
     # 内部属性
     inner = []
     for statement in method.body:
-        print(statement)
         queue = Queue()
         queue.enter(statement)
 

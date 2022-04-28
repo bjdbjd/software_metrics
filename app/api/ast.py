@@ -18,7 +18,6 @@ def before_request():
 def metric():
     file: FileStorage = request.files.get('file')
     content = ''.join([str(line, encoding='utf-8') for line in file.stream.readlines()])
-    print(content)
     try:
         result = analyze(content)
         return trueReturn(data=result)
