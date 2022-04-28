@@ -141,7 +141,7 @@ def analyze(file):
         queue.enter((type, type.name))
     
     while queue.is_empty() is False:
-        item, classname = queue.dequeue()
+        item, name = queue.dequeue()
         if isinstance(item, ClassDeclaration):
             ctx = Context()
             method = {}
@@ -159,7 +159,8 @@ def analyze(file):
             classes.append({
                 'raw': method,
                 'lcom': analyze_lcom(method),
-                'rfc': analyze_rfc(method)
+                'rfc': analyze_rfc(method),
+                'classname': name
             })
         elif isinstance(item, MethodDeclaration):
             # 如果是个方法，里面可能有内部类
