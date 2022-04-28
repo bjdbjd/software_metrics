@@ -16,13 +16,15 @@ def create_app() -> Flask:
 
 
 def register():
-    from .api import ast, class_diag, data_flow_diag, use_case_diag
+    from .api import ast, class_diag, data_flow_diag, use_case_diag, loc, rfc
 
     api = GreenPrint('api', __name__, url_prefix='/api')
     api.register_all([
         ast.ast_blueprint,
         class_diag.class_diag_blueprint,
         data_flow_diag.data_flow_diag_blueprint,
-        use_case_diag.use_case_diag_blueprint
+        use_case_diag.use_case_diag_blueprint,
+        loc.loc_blueprint,
+        rfc.rfc_blueprint
     ])
     return api
