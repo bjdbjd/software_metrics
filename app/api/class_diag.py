@@ -1,7 +1,8 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from . import get_data, handle_error, params_check
 from ..util import trueReturn, falseReturn
 from ..core import class_diag
+from werkzeug.datastructures import FileStorage
 
 class_diag_blueprint = Blueprint('class_diag_blueprint', __name__, url_prefix='/class_diag')
 
@@ -11,7 +12,7 @@ class_diag_blueprint = Blueprint('class_diag_blueprint', __name__, url_prefix='/
 def before_request():
     get_data()
 
-@use_case_diag_blueprint.route('/artoria', methods=['POST'])
+@class_diag_blueprint.route('/artoria', methods=['POST'])
 def handle():
     if request.method == 'POST':
         a: FileStorage = request.files.get('file')
@@ -21,6 +22,6 @@ def handle():
         return None
 
 # 测试用
-@use_case_diag_blueprint.route('/test', methods=['GET'])
+@class_diag_blueprint.route('/test', methods=['GET'])
 def trial():
     return {'code': 200, 'msg': "Use Case Hello :)"}

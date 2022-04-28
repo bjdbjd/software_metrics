@@ -1,5 +1,5 @@
 import os
-from xml.dom.minidom import parse
+from xml.dom.minidom import parseString
 from flask import jsonify
 from ..util import trueReturn, falseReturn
 
@@ -12,7 +12,11 @@ names = []
 DITs = {}
 
 def readXML(file_name):
-	domTree = parse(file_name)
+	for i in range(len(file_name)):
+		file_name[i] = str(file_name[i], 'UTF-8')
+	file = ''.join(file_name)
+	# print(file)
+	domTree = parseString(file)
 	# 文档根元素
 	rootNode = domTree.documentElement
 	classes = rootNode.getElementsByTagName("packagedElement")
