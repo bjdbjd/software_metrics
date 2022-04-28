@@ -17,7 +17,8 @@ def before_request():
 @ast_blueprint.route('/metric', methods=['POST'])
 def metric():
     file: FileStorage = request.files.get('file')
-    content = file.stream.readlines()
+    content = ''.join([str(line, encoding='utf-8') for line in file.stream.readlines()])
+    print(content)
     try:
         result = analyze(content)
         return trueReturn(data=result)

@@ -156,8 +156,15 @@ def analyze(file):
                 if isinstance(body, MethodDeclaration):
                     method_data = analyze_method(body, ctx)
                     method[body.name] = method_data
+            
+            _method = {}
+            for key, value in method.items():
+                _method[key] = {
+                    'reference': list(value['reference']),
+                    'call': list(value['call'])
+                }
             classes.append({
-                'raw': method,
+                'raw': _method,
                 'lcom': analyze_lcom(method),
                 'rfc': analyze_rfc(method),
                 'classname': name
