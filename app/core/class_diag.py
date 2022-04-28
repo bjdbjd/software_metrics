@@ -177,6 +177,13 @@ def getData(file_name):
 		temp['CBO'] = CBOs[name]
 		json.append(temp)
 	# print(json)
+    results.clear()
+    #对应name的id
+    n2id.clear()
+    #各类关系
+    tbe.clear()
+    names.clear()
+    DITs.clear()
 	return trueReturn(json, 'ok')
 		
 if __name__=='__main__':
