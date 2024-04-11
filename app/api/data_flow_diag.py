@@ -1,15 +1,16 @@
-from flask import Blueprint, request, render_template, g
-from ..core import data_flow_diag
-from . import get_data, handle_error, params_check
+from flask import Blueprint, request
 from werkzeug.datastructures import FileStorage
+
+from . import get_data, handle_error
+from ..core import data_flow_diag
 
 data_flow_diag_blueprint = Blueprint('data_flow_diag_blueprint', __name__, url_prefix='/data_flow_diag')
 
 
-@data_flow_diag_blueprint.before_request
-@handle_error
-def before_request():
-    get_data()
+# @data_flow_diag_blueprint.before_request
+# @handle_error
+# def before_request():
+#     get_data()
 
 
 @data_flow_diag_blueprint.route('/mc', methods=['POST'])

@@ -1,15 +1,16 @@
-from flask import Blueprint, request, render_template, g
-from ..core import loc
-from . import get_data, handle_error, params_check
+from flask import Blueprint, request
 from werkzeug.datastructures import FileStorage
+
+from . import get_data, handle_error
+from ..core import loc
 
 loc_blueprint = Blueprint('loc_blueprint', __name__, url_prefix='/loc')
 
 
-@loc_blueprint.before_request
-@handle_error
-def before_request():
-    get_data()
+# @loc_blueprint.before_request
+# @handle_error
+# def before_request():
+#     get_data()
 
 
 @loc_blueprint.route('/loc', methods=['POST'])

@@ -1,15 +1,16 @@
 from flask import Blueprint, request
-from ..core import use_case_diag
-from . import get_data, handle_error, params_check
 from werkzeug.datastructures import FileStorage
+
+from . import get_data, handle_error
+from ..core import use_case_diag
 
 use_case_diag_blueprint = Blueprint('use_case_diag_blueprint', __name__, url_prefix='/use_case_diag')
 
 
-@use_case_diag_blueprint.before_request
-@handle_error
-def before_request():
-    get_data()
+# @use_case_diag_blueprint.before_request
+# @handle_error
+# def before_request():
+#     get_data()
 
 
 @use_case_diag_blueprint.route('/ava', methods=['POST'])

@@ -8,10 +8,10 @@ import traceback
 ast_blueprint = Blueprint('ast_blueprint', __name__, url_prefix='/ast')
 
 
-@ast_blueprint.before_request
-@handle_error
-def before_request():
-    get_data()
+# @ast_blueprint.before_request
+# @handle_error
+# def before_request():
+#     get_data()
 
 
 @ast_blueprint.route('/metric', methods=['POST'])
