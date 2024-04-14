@@ -22,6 +22,7 @@ def handle():
     else:
         return None
 
+
 # 测试用
 @use_case_diag_blueprint.route('/trial', methods=['GET'])
 def trial():

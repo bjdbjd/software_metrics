@@ -17,10 +17,13 @@ def getMcCabe(file_name):
     end_count = findStr(file_name, "<o:End Id")
     # 查找操作数
     oper_count = findStr(file_name, "<o:Activity Id")
+    print(f"oper_count{oper_count}")
     # 查找判断数
     dec_count = findStr(file_name, "<o:Decision Id")
+    print(f"dec_count{dec_count}")
     # 查找边数
     flow_count = findStr(file_name, "<o:ActivityFlow Id")
+    print(f"flow_count{flow_count}")
 
     # 计算圈复杂度，分别为边数-节点数+2及判断数+1
     McCabe_2 = flow_count - (oper_count + dec_count + start_count + end_count) + 2
